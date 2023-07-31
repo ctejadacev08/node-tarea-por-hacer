@@ -1,11 +1,13 @@
-const { menuPrincipal, pausa } = require("./helpers/menu");
+//const { menuPrincipal, pausa } = require("./helpers/menu");
+
+const { menuInquirer, pausa } = require("./helpers/inquirerMenu");
 
 const main = async () => {
   let op = "";
   do {
-    op = await menuPrincipal();
+    op = await menuInquirer();
     console.log({ op });
-    if (op !== "0") await pausa();
+    await pausa();
   } while (op !== "0");
 };
 main();
