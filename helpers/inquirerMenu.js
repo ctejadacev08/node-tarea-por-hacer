@@ -10,7 +10,7 @@ const preguntas = [
     choices: [
       {
         value: "1",
-        name: "1. Crear tarea",
+        name: "1. Crear tarea".green,
       },
       {
         value: "2",
@@ -43,7 +43,7 @@ const preguntas = [
 const menuInquirer = async () => {
   console.clear();
   console.log("=======================================".green);
-  console.log("===========  Menu Principal  ==========".green);
+  console.log("===========  Menu Principal  ==========".white);
   console.log("=======================================\n".green);
 
   const { opcion } = await inquirer.prompt(preguntas);
@@ -61,7 +61,26 @@ const pausa = async () => {
   await inquirer.prompt(question);
 };
 
+const leerInput = async (message) => {
+  const question = [
+    {
+      type: "input",
+      name: "desc",
+      message,
+      validate(value) {
+        if (value.length === 0) {
+          return "Por favor ingrese un valor";
+        }
+        return true;
+      },
+    },
+  ];
+  const { desc } = await inquirer.prompt(question);
+  return desc;
+};
+
 module.exports = {
   menuInquirer,
   pausa,
+  leerInput,
 };
