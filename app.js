@@ -12,6 +12,8 @@ const main = async () => {
   const infoData = leerData();
   if (infoData) {
     //establecer las tareas
+    // cargar las tareas
+    tareas.cargarTareasArray(infoData);
   }
 
   do {
@@ -19,12 +21,24 @@ const main = async () => {
     switch (op) {
       case "1":
         //crear opcion
-        const desc = await leerInput("Descrpción:");
+        const desc = await leerInput("Descripción:");
         tareas.crearTarea(desc);
         break;
 
       case "2":
-        console.log(tareas.listadoArr);
+        // console.log(tareas.listadoArr);
+        tareas.listadoTarea();
+
+        break;
+      case "3": // listar las tareas completadas
+        // console.log(tareas.listadoArr);
+        tareas.listarPendientesCompletadas(true);
+
+        break;
+      case "4": // listar las tareas pendientes
+        // console.log(tareas.listadoArr);
+        tareas.listarPendientesCompletadas(false);
+
         break;
     }
 
